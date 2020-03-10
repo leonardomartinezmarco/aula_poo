@@ -3,78 +3,145 @@ import java.util.Random;
 
 public class Partida {
 
-       static int AtaqueUsuario() {
-            Scanner leitor = new Scanner(System.in);
-            System.out.println("Digite o seu nick de usuário: ");
-            String nome = leitor.next();
-            System.out.println("Tudo pronto " + nome + "? vai começar a partida...");
-            System.out.println("Escolha seu ataque: ");
-            System.out.println("(1) - Soco");
-            System.out.println("(2) - Especial");
-            leitor.nextInt();
+    static Scanner scanf = new Scanner(System.in);
+    static Random  rand  = new Random();
+
+    static Personagem jogador = new Personagem();
+    static Personagem inimigo = new Personagem();
+    protected int armadura;
+    protected int sorte;
+    protected int agilidade;
+    protected int inteligencia;
+    protected int forca;
+    protected int vitalidade;
+
+    public static void main(String[] args)
+    {
+        Introducao();
+        telaPersonagem();
+        chamaTurno();
+        jogadorTurno();
+        cpuTurno();
+        vitoria();
+
     }
 
-    static int AtaqueInimigo() {
-        Random gerador = new Random();
-        return gerador.nextInt(10)+1;
+    public static void Introducao ()
+    {
+        System.out.println("SEJA BEM-VINDO A ARENA, GUERREIRO! DIGA-NOS SEU NOME: ");
+        jogador.setNome("Leonardo");
+        inimigo.setNome("Inimigo");
     }
 
-    static int imprimirHP(int hpUsuario, int hpInimigo, int contagemEspecial) {
-        System.out.println("____________________");
-        System.out.println("HP Usuário: " + hpUsuario);
-        System.out.println("HP Inimigo: " + hpInimigo);
-        System.out.println("* Contagem Especiais: " + contagemEspecial);
-        System.out.println("____________________");
+    public static void telaPersonagem() // MOSTRA A TELA COM INFORMAÇÕES DOS PERSONAGENS
+    {
+        System.out.println("NOME: " + jogador.getNome() + "					    NOME:" + inimigo.getNome());
+        System.out.println("HP: " + jogador.getHealthPoints() + "				HP: "  + inimigo.getHealthPoints());
+        System.out.println("MP: " + jogador.getManaPoints() + "					MP: "  + inimigo.getManaPoints());
+
     }
 
-     static void Batalha() {
-        int hpUsuario = 100;
-        int hpInimigo = 100;
-        int contagemEspecial = 5;
-        int escolhaAtaque;
+    public static void chamaTurno()
+    {
 
-        while (hpUsuario > 0 && hpInimigo > 0) {
-            imprimirHP(hpUsuario, hpInimigo, contagemEspecial);
-            escolhaAtaque = AtaqueUsuario();
-            switch (escolhaAtaque) {
+        int jogadorAgi;
+        int cpuAgi;
+
+        do
+        {
+
+            jogadorAgi = rand.nextInt(1) + jogador.getAgilidade();
+            cpuAgi = rand.nextInt(1) + inimigo.getAgilidade();
+
+            if(jogadorAgi > cpuAgi)
+            {
+                jogadorTurno();
+
+            } else
+            {
+
+
+            }
+
+        } while(jogadorAgi != cpuAgi);
+
+    }
+
+    public static void jogadorTurno()
+    {
+        int acao;
+
+        do
+        {
+
+            System.out.println("SEU TURNO");
+            System.out.println("");
+            System.out.println("Escolha uma acao");
+            System.out.println("1 - Atacar");
+            System.out.println("2 - Atacar forte");
+            System.out.println("3 - Atacar FORTE MESMO");
+            acao = scanf.nextInt();
+
+            switch(acao)
+            {
+                case 1 :
+                    jogador.Ataque(inimigo);
+                    System.out.println("Ataque realizado com sucesso");
+                    telaPersonagem();
+                    chamaTurno();
+                    break;
+
+                default :
+                    System.out.println("Digite um comando valido");
+            }
+
+        } while(jogador.healthPoints != 0 || jogador.healthPoints < 0);
+
+    }
+
+    public static void cpuTurno()
+    {
+        int acao;
+
+        acao = rand.nextInt(1) + 3;
+
+        System.out.println("TURNO INIMIGO");
+
+        do
+        {
+            switch (acao)
+            {
                 case 1:
-                       System.out.println("Você deu um soco");
-                        hpInimigo -= 10;
+                    inimigo.Ataque(jogador);
+                    System.out.println("Você e atacado com sucesso");
+                    chamaTurno();
                     break;
+
                 case 2:
-                        System.out.println("Você aplicou um especial");
-                        hpInimigo -= 25;
-                        contagemEspecial --;
+                    inimigo.Ataque(jogador);
+                    System.out.println("Você e atacado com sucesso");
+                    chamaTurno();
                     break;
-                default:
-                        System.out.println("Opção inválida");
+
+                case 3:
+                    inimigo.Ataque(jogador);
+                    System.out.println("Você e atacado com sucesso");
                     break;
             }
-            if (hpInimigo > 0 ) {
-                escolhaAtaque = AtaqueInimigo();
-                switch (escolhaAtaque){
-                    case 1:
-                        System.out.println("Inimigo te deu um soco");
-                        hpUsuario -= 10;
-                        break;
-                    case 2:
-                        System.out.println("Inimigo te deu um ataque especial");
-                        hpUsuario -= 20;
-                        break;
-                    }
-                 } else {
-                    System.out.println("Inimigo derrotado!");
-            }
-        }
+        } while(inimigo.healthPoints != 0 || inimigo.healthPoints <= 0);
+
     }
 
-    public static void main(String[] args) {
-        Scanner leitor = new Scanner(System.in);
-        int continua = 1;
-        while (continua == 1) {
-            Batalha();
-            System.out.println("Fim de jogo. Deseja continuar? Sim (1) Não (2)");
-            continua = leitor.nextInt();
+    public static void vitoria()
+    {
+        if(jogador.healthPoints == 0)
+        {
+            System.out.println("voce perdeu!");
+        }
+
+        if(inimigo.healthPoints == 0)
+        {
+            System.out.println("voce venceu!");
         }
     }
 }
