@@ -8,12 +8,6 @@ public class Partida {
 
     static Personagem jogador = new Personagem();
     static Personagem inimigo = new Personagem();
-    protected int armadura;
-    protected int sorte;
-    protected int agilidade;
-    protected int inteligencia;
-    protected int forca;
-    protected int vitalidade;
 
     public static void main(String[] args)
     {
@@ -29,15 +23,12 @@ public class Partida {
     public static void Introducao ()
     {
         System.out.println("SEJA BEM-VINDO A ARENA, GUERREIRO! DIGA-NOS SEU NOME: ");
-        jogador.setNome("Leonardo");
-        inimigo.setNome("Inimigo");
     }
 
     public static void telaPersonagem() // MOSTRA A TELA COM INFORMAÇÕES DOS PERSONAGENS
     {
         System.out.println("NOME: " + jogador.getNome() + "					    NOME:" + inimigo.getNome());
-        System.out.println("HP: " + jogador.getHealthPoints() + "				HP: "  + inimigo.getHealthPoints());
-        System.out.println("MP: " + jogador.getManaPoints() + "					MP: "  + inimigo.getManaPoints());
+        System.out.println("HP: " + jogador.getHealthPoints() + "				        HP: "  + inimigo.getHealthPoints());
 
     }
 

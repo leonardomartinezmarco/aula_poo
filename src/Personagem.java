@@ -11,9 +11,14 @@ public class Personagem extends Partida {
         public static int danoMinimo;
         public static int danoMaximo;
         public static int healthPoints;
-        public static int manaPoints;
+        private final int armadura;
+        private final int vitalidade;
+        private int agilidade;
+        private final int inteligencia;
+        private final int forca;
+        private final int sorte;
 
-        //CONSTRUTOR
+    //CONSTRUTOR
 
         public Personagem ()
         {
@@ -28,114 +33,103 @@ public class Personagem extends Partida {
             this.defesa = 10 + this.armadura;
             this.critico = this.sorte / 100;
             this.healthPoints = 100;
-            this.manaPoints = 100;
             this.danoMinimo = 10;
             this.danoMaximo = 20;
         }
 
-        //SETTERS
+    //SETTERS
 
-        public void setNome (String nome)
-        {
-            this.nome = nome;
-        }
+    public void setNome (String nome)
+    {
+        this.nome = nome;
+    }
 
-        public void setClasse (String classe)
-        {
-            this.classe = classe;
-        }
+    public void setClasse (String classe)
+    {
+        this.classe = classe;
+    }
 
-        public void setDefesa (int defesa)
-        {
-            this.defesa = defesa;
-        }
+    public void setDefesa (int defesa)
+    {
+        this.defesa = defesa;
+    }
 
-        public void setCritico (int critico)
-        {
-            this.critico = critico;
-        }
+    public void setCritico (int critico)
+    {
+        this.critico = critico;
+    }
 
-        public void setHealthPoints (int healthPoints)
-        {
-            this.healthPoints = healthPoints;
-        }
+    public void setHealthPoints (int healthPoints)
+    {
+        this.healthPoints = healthPoints;
+    }
 
-        public void setManaPoints (int manaPoints)
-        {
-            this.manaPoints = manaPoints;
-        }
+    public void setDanoMinimo (int danoMinimo)
+    {
+        this.danoMinimo = danoMinimo;
+    }
 
-        public void setDanoMinimo (int danoMinimo)
-        {
-            this.danoMinimo = danoMinimo;
-        }
+    public void setDanoMaximo (int danoMaximo)
+    {
+        this.danoMaximo = danoMaximo;
+    }
 
-        public void setDanoMaximo (int danoMaximo)
-        {
-            this.danoMaximo = danoMaximo;
-        }
+    //GETTERS
 
-        //GETTERS
+    public String getNome ()
+    {
+        return this.nome;
+    }
 
-        public String getNome ()
-        {
-            return this.nome;
-        }
+    public String getClasse ()
+    {
+        return this.classe;
+    }
 
-        public String getClasse ()
-        {
-            return this.classe;
-        }
+    public int getDefesa ()
+    {
+        return this.defesa;
+    }
 
-        public int getDefesa ()
-        {
-            return this.defesa;
-        }
+    public int getCritico ()
+    {
+        return this.critico;
+    }
 
-        public int getCritico ()
-        {
-            return this.critico;
-        }
+    public int getHealthPoints ()
+    {
+        return this.healthPoints;
+    }
 
-        public int getHealthPoints ()
-        {
-            return this.healthPoints;
-        }
+    public int getDanoMinimo ()
+    {
+        return this.danoMinimo;
+    }
 
-        public int getManaPoints ()
-        {
-            return this.manaPoints;
-        }
+    public int getDanoMaximo ()
+    {
+        return this.danoMaximo;
+    }
 
-        public int getDanoMinimo ()
-        {
-            return this.danoMinimo;
-        }
+    public void Ataque (Personagem inimigo)
+    {
+        Random rand = new Random();
 
-        public int getDanoMaximo ()
-        {
-            return this.danoMaximo;
-        }
+        int ataque;
 
-        public void Ataque (Personagem inimigo)
-        {
-            Random rand = new Random();
+        ataque = rand.nextInt(this.danoMaximo) + this.danoMinimo;
+        inimigo.healthPoints = ataque - inimigo.defesa;
 
-            int ataque;
+    }
 
-            ataque = rand.nextInt(this.danoMaximo) + this.danoMinimo;
-            inimigo.healthPoints = ataque - inimigo.defesa;
+    public void recebeDano (Personagem inimigo ,int ataque)
+    {
+        this.healthPoints = ataque - defesa;
 
-        }
-
-        public void recebeDano (Personagem inimigo ,int ataque)
-        {
-            this.healthPoints = ataque - defesa;
-
-        }
+    }
 
     public int getAgilidade() {
-        return this.agilidade = 10;
+        return 0;
     }
 }
 
