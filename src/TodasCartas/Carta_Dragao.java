@@ -1,10 +1,10 @@
 package TodasCartas;
 import Partida.Hack;
 
-public class Carta_Dragão extends Carta implements Hack {
+public class Carta_Dragao extends Carta implements Hack {
 	private int defesa = 2;
 	
-	public Carta_Dragão (String nome, int vida) {
+	public Carta_Dragao (String nome, int vida) {
 		super(nome,vida*2);
 	}
 		

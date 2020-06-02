@@ -11,7 +11,7 @@ import TodasCartas.Carta_Bruxa;
 import TodasCartas.Carta;
 import TodasCartas.Carta_Capiroto;
 import TodasCartas.Carta_Dinossauro;
-import TodasCartas.Carta_Dragão;
+import TodasCartas.Carta_Dragao;
 import TodasCartas.Carta_Elfo;
 import TodasCartas.Carta_Esqueleto;
 import TodasCartas.Carta_Fantasma;
@@ -60,8 +60,8 @@ public class ControlGame {
 		this.Cartas.put(order++, new Carta_Bruxa	  ("Floresta Negra I", 15));
 		this.Cartas.put(order++, new Carta_Capiroto	  ("Rei Vermelho",	28));
 		this.Cartas.put(order++, new Carta_Dinossauro ("Rex do Mar", 60));
-		this.Cartas.put(order++, new Carta_Dragão	  ("Voa-Voa", 30));
-		this.Cartas.put(order++, new Carta_Elfo		  ("Elfa Místico I", 5));
+		this.Cartas.put(order++, new Carta_Dragao	  ("Voa-Voa", 30));
+		this.Cartas.put(order++, new Carta_Elfo		  ("Elfa Mï¿½stico I", 5));
 		this.Cartas.put(order++, new Carta_Esqueleto  ("Rei das Caveiras", 75));
 		this.Cartas.put(order++, new Carta_Fantasma	  ("Fantasma da Corte", 36));
 		this.Cartas.put(order++, new Carta_Fera		  ("Alada Fera",	200));
@@ -89,8 +89,8 @@ public class ControlGame {
 		String modo = "";
 	
 		while (!resp){
-			System.out.println("\n*Atenção: Você Deseja ativar o modo automático de execução das partidas do jogo?");
-			System.out.println("\nDigite 's' para Sim ou 'n' para Não...");
+			System.out.println("\n*Atenï¿½ï¿½o: Vocï¿½ Deseja ativar o modo automï¿½tico de execuï¿½ï¿½o das partidas do jogo?");
+			System.out.println("\nDigite 's' para Sim ou 'n' para Nï¿½o...");
 			modo = this.input.nextLine();
 			
 			if (modo.toUpperCase().contentEquals("S")) {
@@ -99,7 +99,7 @@ public class ControlGame {
 			} else if (modo.toUpperCase().contentEquals("N")) {
 				resp = true;
 			} else {
-				System.out.println("\nOpção incorreta! Digite 's' ou 'n'.");
+				System.out.println("\nOpï¿½ï¿½o incorreta! Digite 's' ou 'n'.");
 			}
 		}		
 	}
@@ -130,7 +130,7 @@ public class ControlGame {
 	}
 	
 	public String exibirVencedor() {
-		return "Vencedor da partida é: " + this.vencedor;
+		return "Vencedor da partida ï¿½: " + this.vencedor;
 	}
 	
 	public String vencedor(Player jogador1, Player jogador2) {
@@ -183,8 +183,8 @@ public class ControlGame {
 		String modo = "";
 	
 		while (!resposta) {
-			System.out.println("\n" + player.retornarNome() + " Você deseja utilizar cartas aleatórias?");
-			System.out.println("Digite 's' para Sim ou 'n' para Não");
+			System.out.println("\n" + player.retornarNome() + " Vocï¿½ deseja utilizar cartas aleatï¿½rias?");
+			System.out.println("Digite 's' para Sim ou 'n' para Nï¿½o");
 			modo = this.input.nextLine();
 			
 			if (modo.toUpperCase().contentEquals("S")){
@@ -194,7 +194,7 @@ public class ControlGame {
 				resposta = true;
 			}
 			else {
-				System.out.println("\nOpção incorreta! Digite 's' ou 'n'.");
+				System.out.println("\nOpï¿½ï¿½o incorreta! Digite 's' ou 'n'.");
 			}
 		}
 			
@@ -204,12 +204,11 @@ public class ControlGame {
 		} else {
 			int opcaoCarta = 0;
 			int count = 1;
-			
 			System.out.println("\n" + player.retornarNome() + " escolha " + deck_qtd + " cartas:");
-		 
-			for(int indice: this.Cartas.keySet()) {
-		      System.out.println( "Carta " + indice + " : " + this.Cartas.get(indice).retornarNome() );
-		    }
+
+		for(int indice: this.Cartas.keySet()) {
+		    System.out.println( "Carta " + indice + " : " + this.Cartas.get(indice).retornarNome() );
+		}
 			
 			System.out.println("");
 			
@@ -217,11 +216,11 @@ public class ControlGame {
 			
 			while(count < deck_qtd +1) {				
 				System.out.println("Carta " + count + ":");
-				System.out.println("Digite o número da carta para escolher:");
+				System.out.println("Digite o nï¿½mero da carta para escolher:");
 				opcaoCarta = this.input.nextInt();
 				
 				if (opcaoCarta > this.Cartas.size()-1 || opcaoCarta < 0) {
-					System.out.println("\nOpção inválida! Digite um número de uma carta conforme a lista.\n");
+					System.out.println("\nOpï¿½ï¿½o invï¿½lida! Digite um nï¿½mero de uma carta conforme a lista.\n");
 				} else {
 					packAdicionar( packJogador(jogadorNumero), opcaoCarta);
 					count++;
