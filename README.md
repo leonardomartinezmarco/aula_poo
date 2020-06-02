@@ -1,5 +1,5 @@
 # Jogo de Cartas
-# Senac 2020 - Sistemas para internet - Programacao orientada a objetos
+# Senac 2020 - TSI - Programacao orientada a objetos
 
 # Criador do Projeto
 # - Leonardo Laurindo Martinez 
@@ -7,7 +7,7 @@
 
 Jogo de cartas para 2 jogadores.
 
-### Pack
+### Pack de Cartas do game
 	- Cada Player tera um deck de 23 cartas.
 		- 5 Combatentes
 		- 6 Armas
